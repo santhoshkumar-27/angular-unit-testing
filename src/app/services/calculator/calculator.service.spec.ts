@@ -57,14 +57,20 @@ import { LoggerService } from '../logger/logger.service';
     ));
 */
 describe('calculator', () => {
+  let mockLoggerService: any;
+  let service: any;
+  beforeEach(() => {
+    mockLoggerService  = jasmine.createSpyObj('LoggerService', ['logging'])
+    service = new CalculatorService(mockLoggerService);
+  })
     it('should subtract two number', () => {
     // pending();
     // const logger = new LoggerService();
-    const MockLoggerService  = jasmine.createSpyObj('LoggerService', ['logging'])
-    const service = new CalculatorService(MockLoggerService);
+    mockLoggerService  = jasmine.createSpyObj('LoggerService', ['logging'])
+    service = new CalculatorService(mockLoggerService);
     const result = service.subtract(2, 1);
     expect(result).toBe(1);
-    expect(MockLoggerService.logging).toHaveBeenCalled();
-    expect(MockLoggerService.logging).toHaveBeenCalledTimes(1);
+    expect(mockLoggerService.logging).toHaveBeenCalled();
+    expect(mockLoggerService.logging).toHaveBeenCalledTimes(1);
   })
 })
