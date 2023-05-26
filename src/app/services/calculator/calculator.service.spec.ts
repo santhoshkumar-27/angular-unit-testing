@@ -3,12 +3,12 @@ import { TestBed } from '@angular/core/testing';
 import { CalculatorService } from './calculator.service';
 import { LoggerService } from '../logger/logger.service';
 
-class MockLoggerService extends LoggerService {
-  override messages: string[] = [];
-  override logging(message: string): void {
-    this.messages.push(message);
-  }
-}
+// class MockLoggerService extends LoggerService {
+//   override messages: string[] = [];
+//   override logging(message: string): void {
+//     this.messages.push(message);
+//   }
+// }
 // describe('CalculatorService', () => {
 //   let service: CalculatorService;
 //   let loggerService: any;
@@ -59,12 +59,12 @@ class MockLoggerService extends LoggerService {
 describe('calculator', () => {
     it('should subtract two number', () => {
     // pending();
-    const logger = new LoggerService();
-    spyOn(logger, 'logging');
-    const service = new CalculatorService(logger);
+    // const logger = new LoggerService();
+    const MockLoggerService  = jasmine.createSpyObj('LoggerService', ['logging'])
+    const service = new CalculatorService(MockLoggerService);
     const result = service.subtract(2, 1);
     expect(result).toBe(1);
-    expect(logger.logging).toHaveBeenCalled();
-    expect(logger.logging).toHaveBeenCalledTimes(1);
+    expect(MockLoggerService.logging).toHaveBeenCalled();
+    expect(MockLoggerService.logging).toHaveBeenCalledTimes(1);
   })
 })

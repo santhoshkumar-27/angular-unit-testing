@@ -5,7 +5,9 @@ import { Injectable } from '@angular/core';
 })
 export class LoggerService {
   messages: string[] = [];
-  constructor() { }
+  constructor() {
+    console.log('this is initialized')
+   }
   logging(message: string) {
     this.messages.push(message);
     console.log(this.messages);
