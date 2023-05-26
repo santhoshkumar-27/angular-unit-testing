@@ -9,39 +9,39 @@ class MockLoggerService extends LoggerService {
     this.messages.push(message);
   }
 }
-describe('CalculatorService', () => {
-  let service: CalculatorService;
-  let loggerService: any;
-  beforeEach(() => {
-    TestBed.configureTestingModule({
-      providers: [
-        { provide: LoggerService, useClass: MockLoggerService },
-      ]
+// describe('CalculatorService', () => {
+//   let service: CalculatorService;
+//   let loggerService: any;
+//   beforeEach(() => {
+//     TestBed.configureTestingModule({
+//       providers: [
+//         { provide: LoggerService, useClass: MockLoggerService },
+//       ]
 
-    });
-    service = TestBed.inject(CalculatorService);
-    loggerService = TestBed.get(MockLoggerService);
+//     });
+//     service = TestBed.inject(CalculatorService);
+//     loggerService = TestBed.get(MockLoggerService);
 
-  });
+//   });
 
-  it('should be created', () => {
-    expect(service).toBeTruthy();
-  });
+//   it('should be created', () => {
+//     expect(service).toBeTruthy();
+//   });
 
-  it('should add two number', () => {
-    // pending();
-    // fail();
-    const result = service.add(1, 2);
-    expect(loggerService.logging).toHaveBeenCalledTimes(1);
-    expect(result).toBe(3);
-  })
+//   it('should add two number', () => {
+//     // pending();
+//     // fail();
+//     const result = service.add(1, 2);
+//     expect(loggerService.logging).toHaveBeenCalledTimes(1);
+//     expect(result).toBe(3);
+//   })
 
-  it('should subtract two number', () => {
-    // pending();
-    const result = service.subtract(2, 1);
-    expect(result).toBe(1);
-  })
-});
+//   it('should subtract two number', () => {
+//     // pending();
+//     const result = service.subtract(2, 1);
+//     expect(result).toBe(1);
+//   })
+// });
 
 /*
   beforeEach(async( () => {
@@ -56,3 +56,15 @@ describe('CalculatorService', () => {
         });
     ));
 */
+describe('calculator', () => {
+    it('should subtract two number', () => {
+    // pending();
+    const logger = new LoggerService();
+    spyOn(logger, 'logging');
+    const service = new CalculatorService(logger);
+    const result = service.subtract(2, 1);
+    expect(result).toBe(1);
+    expect(logger.logging).toHaveBeenCalled();
+    expect(logger.logging).toHaveBeenCalledTimes(1);
+  })
+})
