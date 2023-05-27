@@ -1,1 +1,3 @@
-<p>post works!</p>
+<div *ngFor="let post of vm.posts">
+    <app-post [post]="post" (onDelete)="deletePost($event)"></app-post>
+</div>

@@ -1,1 +1,5 @@
-<p>post works!</p>
+<div *ngIf="post">
+    <div>{{post.title}}</div>
+    <div>{{post.body}}</div>
+    <button (click)="deletePost()">Delete</button>
+</div>

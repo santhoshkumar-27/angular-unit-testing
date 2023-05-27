@@ -3,7 +3,7 @@ import { VM, post } from '../../models/post.model';
 import { PostService } from '../../services/post/post.service';
 
 @Component({
-  selector: 'app-post',
+  selector: 'app-posts',
   templateUrl: './posts.component.html',
   styleUrls: ['./posts.component.scss']
 })
