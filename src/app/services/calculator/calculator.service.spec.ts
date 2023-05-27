@@ -60,16 +60,34 @@ describe('calculator', () => {
   let mockLoggerService: any;
   let service: any;
   beforeEach(() => {
-    mockLoggerService  = jasmine.createSpyObj('LoggerService', ['logging'])
+    mockLoggerService = jasmine.createSpyObj('LoggerService', ['logging'])
     service = new CalculatorService(mockLoggerService);
   })
-    it('should subtract two number', () => {
+  it('should subtract two number', () => {
     // pending();
     // const logger = new LoggerService();
-    mockLoggerService  = jasmine.createSpyObj('LoggerService', ['logging'])
-    service = new CalculatorService(mockLoggerService);
     const result = service.subtract(2, 1);
     expect(result).toBe(1);
+    expect(mockLoggerService.logging).toHaveBeenCalled();
+    expect(mockLoggerService.logging).toHaveBeenCalledTimes(1);
+  })
+
+  it('should add two number', () => {
+    const result = service.add(2, 1);
+    expect(result).toBe(3);
+    expect(mockLoggerService.logging).toHaveBeenCalled();
+    expect(mockLoggerService.logging).toHaveBeenCalledTimes(1);
+  })
+
+  it('should divide two number', () => {
+    const result = service.divide(3, 1);
+    expect(result).toBe(3);
+    expect(mockLoggerService.logging).toHaveBeenCalled();
+    expect(mockLoggerService.logging).toHaveBeenCalledTimes(1);
+  })
+  it('should multiple two number', () => {
+    const result = service.divide(3, 1);
+    expect(result).toBe(3);
     expect(mockLoggerService.logging).toHaveBeenCalled();
     expect(mockLoggerService.logging).toHaveBeenCalledTimes(1);
   })

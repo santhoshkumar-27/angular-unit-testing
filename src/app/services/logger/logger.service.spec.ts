@@ -22,6 +22,7 @@ describe('LoggerService', () => {
   });
 
   it('should clear the loggs', () => {
+    service.logging('message');
     service.clearLog();
     expect(service.length).toEqual(0)
   });
