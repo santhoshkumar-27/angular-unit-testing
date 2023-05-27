@@ -4,14 +4,16 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class LoggerService {
-  messages: string[] = [];
+  private messages: string[] = [];
   constructor() {
-    console.log('this is initialized')
-   }
+  }
   logging(message: string) {
     this.messages.push(message);
-    console.log(this.messages);
   }
-
-
+  clearLog() {
+    this.messages.length = 0;
+  }
+  get length() {
+    return this.messages.length;
+  }
 }

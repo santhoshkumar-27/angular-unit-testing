@@ -13,11 +13,16 @@ describe('LoggerService', () => {
   it('should be created', () => {
     expect(service).toBeTruthy();
   });
-
-  it('should be logger the message from doing action in calculator', () => {
-    service.messages = [];
-    // spyOn(service, 'logging')
+  it('should not have any message at starting', () => {
+    expect(service.length).toEqual(0)
+  });
+  it('should be messages count is equal to one', () => {
     service.logging('message');
-    expect(service.messages.length).toEqual(1)
+    expect(service.length).toEqual(1)
+  });
+
+  it('should clear the loggs', () => {
+    service.clearLog();
+    expect(service.length).toEqual(0)
   });
 });
