@@ -8,12 +8,9 @@ import { post } from 'src/app/models/post.model';
 })
 export class PostComponent {
   @Input() post!: post;
-  @Output() onDelete: EventEmitter<post> = new EventEmitter();
-  constructor() {
-
-  }
-
-  deletePost() {
+  @Output() onDelete: EventEmitter<post> =  new EventEmitter(true);
+  deletePost(event: Event) {
+    event.stopPropagation();
     this.onDelete.emit(this.post);
   }
 }

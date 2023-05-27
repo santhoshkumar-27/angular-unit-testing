@@ -2,7 +2,7 @@ import { of } from "rxjs";
 import { post } from "../../models/post.model"
 import { PostsComponent } from "./posts.component";
 
-describe('Post component', () => {
+describe('Posts component', () => {
     let posts: post[];
     let component: PostsComponent;
     let mockPostService: any;

@@ -1,5 +1,5 @@
 <div *ngIf="post">
     <div>{{post.title}}</div>
     <div>{{post.body}}</div>
-    <button (click)="deletePost()">Delete</button>
+    <button (click)="deletePost($event)">Delete</button>
 </div>
