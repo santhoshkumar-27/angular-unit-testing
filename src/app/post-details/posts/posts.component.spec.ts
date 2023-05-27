@@ -1,10 +1,10 @@
 import { of } from "rxjs";
-import { post } from "../models/post.model"
-import { PostComponent } from "./post.component";
+import { post } from "../../models/post.model"
+import { PostsComponent } from "./posts.component";
 
 describe('Post component', () => {
     let posts: post[];
-    let component: PostComponent;
+    let component: PostsComponent;
     let mockPostService: any;
     beforeEach(() => {
         posts = [
@@ -25,7 +25,7 @@ describe('Post component', () => {
             },
         ];
         mockPostService = jasmine.createSpyObj(['getPost', 'deletePost'])
-        component = new PostComponent(mockPostService);
+        component = new PostsComponent(mockPostService);
     })
     describe('delete', () => {
         beforeEach(() => {

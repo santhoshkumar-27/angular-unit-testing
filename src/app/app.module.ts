@@ -3,12 +3,14 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { StrengthPipe } from './pipe/strength/strength.pipe';
-import { PostComponent } from './post/post.component';
+import { PostsComponent } from './post-details/posts/posts.component';
+import { PostComponent } from './post-details/post/post.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     StrengthPipe,
+    PostsComponent,
     PostComponent
   ],
   imports: [
