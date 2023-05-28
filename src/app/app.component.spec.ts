@@ -3,7 +3,7 @@ import { AppComponent } from './app.component';
 
 xdescribe('AppComponent', () => {
   beforeEach(async () => {
-    await TestBed.configureTestingModule({
+    await TestBed.configureTestingModule({ // testbed is creating test module
       declarations: [
         AppComponent
       ],
