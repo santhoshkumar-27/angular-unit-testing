@@ -23,7 +23,7 @@ describe('Post component', () => {
         fixture = TestBed.createComponent(PostComponent);
         component = fixture.componentInstance;
         component.post = post;
-        fixture.detectChanges();
+        fixture.detectChanges(); // we have to put this detectchanges method in order to render
         element = fixture.nativeElement;
     })
     it('should create post component using testbed', () => {
