@@ -38,7 +38,7 @@ describe('Posts component', () => {
             },
         ];
         // mockPostService = jasmine.createSpyObj(['getPost', 'deletePost'])
-        TestBed.configureTestingModule({
+        TestBed.configureTestingModule({ // testbed resolve the dependency injection issuess
             imports: [
                 HttpClientTestingModule,
               ],
