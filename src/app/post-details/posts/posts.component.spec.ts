@@ -8,6 +8,7 @@ import { HttpClientTestingModule } from '@angular/common/http/testing'
 import { PostComponent } from "../post/post.component";
 import { NO_ERRORS_SCHEMA } from "@angular/compiler";
 import { Component, Input } from "@angular/core";
+import { By } from "@angular/platform-browser";
 // class mockPostService {
 //     getPost() {
 
@@ -47,6 +48,8 @@ describe('Posts component', () => {
     let fixture: ComponentFixture<PostsComponent>;
     let component: PostsComponent;
     let mockPostService: any;
+    let nativeElement: HTMLElement;
+    let debugElement: any;
     // let postService: PostService;
     beforeEach(() => {
         posts = [
@@ -94,6 +97,9 @@ describe('Posts component', () => {
         // postService = TestBed.inject(PostService);
         fixture = TestBed.createComponent(PostsComponent);
         component = fixture.componentInstance;
+        nativeElement = fixture.nativeElement;
+        debugElement = fixture.debugElement;
+
     });
     describe('getPost', () => {
         it('should set the post value from the webservice and set to the Post method', () => {
@@ -118,6 +124,15 @@ describe('Posts component', () => {
         })
         it('should delete the selected post from the posts only one', () => {
             expect(mockPostService.deletePost).toHaveBeenCalledTimes(1);
+        })
+    })
+    describe('template', () => {
+        it('should create one post element for a each post', () => {
+            mockPostService.getPost.and.returnValue(of(posts));
+            fixture.detectChanges();
+            // const divElements = nativeElement.querySelectorAll('.single-post');
+            const divElements = debugElement.queryAll(By.css('.single-post'));
+            expect(divElements.length).toEqual(posts.length);
         })
     })
 })
