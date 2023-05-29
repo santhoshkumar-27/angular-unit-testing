@@ -58,10 +58,23 @@ import { LoggerService } from '../logger/logger.service';
 */
 describe('calculator', () => {
   let mockLoggerService: any;
+  let loggerServiceSpyObj: any;
   let service: any;
   beforeEach(() => {
-    mockLoggerService = jasmine.createSpyObj('LoggerService', ['logging'])
-    service = new CalculatorService(mockLoggerService);
+    mockLoggerService = jasmine.createSpyObj(['logging', 'clearLog'])
+
+    TestBed.configureTestingModule({
+      providers: [
+        CalculatorService,
+        {
+          provide: LoggerService,
+          useValue: mockLoggerService
+        }
+      ]
+    })
+    // service = new CalculatorService(mockLoggerService);
+    service = TestBed.inject(CalculatorService);
+    loggerServiceSpyObj = TestBed.inject(LoggerService) as jasmine.SpyObj<LoggerService>;
   })
   it('should subtract two number', () => {
     // pending();
@@ -70,6 +83,8 @@ describe('calculator', () => {
     expect(result).toBe(1);
     expect(mockLoggerService.logging).toHaveBeenCalled();
     expect(mockLoggerService.logging).toHaveBeenCalledTimes(1);
+    // expect(loggerServiceSpyObj.logging).toHaveBeenCalled();
+    // expect(loggerServiceSpyObj.logging).toHaveBeenCalledTimes(1);
   })
 
   it('should add two number', () => {
@@ -77,6 +92,8 @@ describe('calculator', () => {
     expect(result).toBe(3);
     expect(mockLoggerService.logging).toHaveBeenCalled();
     expect(mockLoggerService.logging).toHaveBeenCalledTimes(1);
+    // expect(loggerServiceSpyObj.logging).toHaveBeenCalled();
+    // expect(loggerServiceSpyObj.logging).toHaveBeenCalledTimes(1);
   })
 
   it('should divide two number', () => {
@@ -84,11 +101,15 @@ describe('calculator', () => {
     expect(result).toBe(3);
     expect(mockLoggerService.logging).toHaveBeenCalled();
     expect(mockLoggerService.logging).toHaveBeenCalledTimes(1);
+    // expect(loggerServiceSpyObj.logging).toHaveBeenCalled();
+    // expect(loggerServiceSpyObj.logging).toHaveBeenCalledTimes(1);
   })
   it('should multiple two number', () => {
     const result = service.divide(3, 1);
     expect(result).toBe(3);
     expect(mockLoggerService.logging).toHaveBeenCalled();
     expect(mockLoggerService.logging).toHaveBeenCalledTimes(1);
+    // expect(loggerServiceSpyObj.logging).toHaveBeenCalled();
+    // expect(loggerServiceSpyObj.logging).toHaveBeenCalledTimes(1);
   })
 })
