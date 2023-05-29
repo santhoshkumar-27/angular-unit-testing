@@ -6,6 +6,8 @@ import { PostService } from "src/app/services/post/post.service";
 import { HttpClient } from "@angular/common/http";
 import { HttpClientTestingModule } from '@angular/common/http/testing'
 import { PostComponent } from "../post/post.component";
+import { NO_ERRORS_SCHEMA } from "@angular/compiler";
+import { Component, Input } from "@angular/core";
 // class mockPostService {
 //     getPost() {
 
@@ -15,6 +17,15 @@ import { PostComponent } from "../post/post.component";
 //         return of(true);
 //     }
 // }
+
+@Component({
+    selector: 'app-post',
+    template: `<div></div>`
+})
+class FakePostComponent {
+    @Input() post!: post;
+}
+
 describe('Posts component', () => {
     let posts: post[] = [
         {
@@ -62,7 +73,8 @@ describe('Posts component', () => {
             ],
             declarations: [
                 PostsComponent,
-                PostComponent,
+                // PostComponent,
+                FakePostComponent
             ],
             providers: [
                 HttpClient,
@@ -73,6 +85,9 @@ describe('Posts component', () => {
                     // useValue: mockPostService,
                     // userClass: mockPostService
                 }
+            ],
+            schemas: [
+                NO_ERRORS_SCHEMA
             ]
         })
         // component = TestBed.inject(PostsComponent);
