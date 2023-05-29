@@ -135,7 +135,7 @@ describe('Posts component', () => {
             let postComponent = postComponentDEs[0].componentInstance as PostComponent;
             // expect(postComponent.post).toEqual(posts[0]);
             for(let i = 0; i < postComponentDEs.length; i++) {
-                // expect(postComponentDEs[i]).toEqual(posts[i]);
+                expect(postComponentDEs[i].componentInstance.post).toEqual(posts[i]);
             }
         })
     })
