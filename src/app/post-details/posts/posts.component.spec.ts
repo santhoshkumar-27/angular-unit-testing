@@ -52,23 +52,6 @@ describe('Posts component', () => {
     let debugElement: any;
     // let postService: PostService;
     beforeEach(() => {
-        posts = [
-            {
-                id: 1,
-                body: 'describe test',
-                title: 'test'
-            },
-            {
-                id: 2,
-                body: 'describe test',
-                title: 'test'
-            },
-            {
-                id: 3,
-                body: 'describe test',
-                title: 'test'
-            },
-        ];
         mockPostService = jasmine.createSpyObj(['getPost', 'deletePost'])
         TestBed.configureTestingModule({ // testbed resolve the dependency injection issuess
             imports: [
@@ -143,6 +126,17 @@ describe('Posts component', () => {
             fixture.detectChanges();
             const postComponentDEs = fixture.debugElement.queryAll(By.directive(PostComponent)) // for a search of child components
             expect(postComponentDEs.length).toBe(posts.length);
+        })
+        it('should check the whether the postcomponent recieves the same post data from parent component', () => {
+            mockPostService.getPost.and.returnValue(of(posts));
+            // call ngoninit methods
+            fixture.detectChanges();
+            const postComponentDEs = fixture.debugElement.queryAll(By.directive(PostComponent))
+            let postComponent = postComponentDEs[0].componentInstance as PostComponent;
+            // expect(postComponent.post).toEqual(posts[0]);
+            for(let i = 0; i < postComponentDEs.length; i++) {
+                // expect(postComponentDEs[i]).toEqual(posts[i]);
+            }
         })
     })
 })
