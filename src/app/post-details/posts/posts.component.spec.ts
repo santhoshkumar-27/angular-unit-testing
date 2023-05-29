@@ -76,8 +76,8 @@ describe('Posts component', () => {
             ],
             declarations: [
                 PostsComponent,
-                // PostComponent,
-                FakePostComponent
+                PostComponent,
+                // FakePostComponent
             ],
             providers: [
                 HttpClient,
@@ -133,6 +133,16 @@ describe('Posts component', () => {
             // const divElements = nativeElement.querySelectorAll('.single-post');
             const divElements = debugElement.queryAll(By.css('.single-post'));
             expect(divElements.length).toEqual(posts.length);
+        })
+    })
+
+    describe('real post component', () => {
+        it('should create exact same number of post component with posts', () => {
+            mockPostService.getPost.and.returnValue(of(posts));
+            // call ngoninit methods
+            fixture.detectChanges();
+            const postComponentDEs = fixture.debugElement.queryAll(By.directive(PostComponent)) // for a search of child components
+            expect(postComponentDEs.length).toBe(posts.length);
         })
     })
 })
