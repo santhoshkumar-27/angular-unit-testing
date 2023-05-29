@@ -3,10 +3,12 @@ import { post } from '../../models/post.model'
 import { first } from "rxjs";
 import { TestBed, ComponentFixture } from "@angular/core/testing";
 import { NO_ERRORS_SCHEMA } from "@angular/core";
+import { By } from "@angular/platform-browser";
 describe('Post component', () => {
     let component: PostComponent;
     let fixture: ComponentFixture<PostComponent>;
     let element: HTMLElement;
+    let debugElement: any;
     let post: post = {
         id: 1,
         title: 'testing',
@@ -25,6 +27,7 @@ describe('Post component', () => {
         component.post = post;
         fixture.detectChanges(); // we have to put this detectchanges method in order to render
         element = fixture.nativeElement;
+        debugElement = fixture.debugElement; // debugElement used to ssr testing mode
     })
     it('should create post component using testbed', () => {
         // TestBed.configureTestingModule({
@@ -35,6 +38,10 @@ describe('Post component', () => {
         // const fixture = TestBed.createComponent(PostComponent); // fixture is known as class instance with the templete rendered
         // const component = fixture.componentInstance;
         expect(component).toBeDefined();
+    })
+    it('should check the weather the title is present or not using the debug element', () => {
+        const titleElement = debugElement.query(By.css('#title')).nativeElement
+        expect(titleElement?.textContent).toContain('testing')
     })
     it('should check the weather the title is present or not', () => {
         const ele = element.querySelector('#title');
