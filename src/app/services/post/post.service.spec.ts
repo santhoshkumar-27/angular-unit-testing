@@ -37,4 +37,15 @@ describe('post service', () => {
             expect(mockPostService.get).toHaveBeenCalledTimes(1);
         })
     })
+
+    describe('delete post method', () => {
+        it('should return method if delete action done perfectly', (done) => {
+            mockPostService.delete.and.returnValue(of(true));
+            postService.deletePost(post[0]).subscribe((res: any) => {
+                done();
+            })
+            expect(mockPostService.delete).toHaveBeenCalled();
+            expect(mockPostService.delete).toHaveBeenCalledTimes(1);
+        })
+    })
 })
