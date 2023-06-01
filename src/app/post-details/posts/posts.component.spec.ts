@@ -51,9 +51,9 @@ describe('Posts component', () => {
     let nativeElement: HTMLElement;
     let debugElement: any;
     // let postService: PostService;
-    beforeEach(() => {
+    beforeEach(async () => {
         mockPostService = jasmine.createSpyObj(['getPost', 'deletePost'])
-        TestBed.configureTestingModule({ // testbed resolve the dependency injection issuess
+        await TestBed.configureTestingModule({ // testbed resolve the dependency injection issuess
             imports: [
                 HttpClientTestingModule,
             ],
@@ -75,7 +75,7 @@ describe('Posts component', () => {
             schemas: [
                 NO_ERRORS_SCHEMA
             ]
-        })
+        }).compileComponents();
         // component = TestBed.inject(PostsComponent);
         // postService = TestBed.inject(PostService);
         fixture = TestBed.createComponent(PostsComponent);
@@ -109,6 +109,22 @@ describe('Posts component', () => {
             expect(mockPostService.deletePost).toHaveBeenCalledTimes(1);
         })
     })
+    xdescribe('check the deletePost', () => {
+        it('should call delete method when post component button  is clicked', () => {
+            spyOn(component, 'deletePost')
+            mockPostService.getPost.and.returnValue(of(posts));
+            // call ngoninit methods
+            fixture.detectChanges();
+            const postComponentDEs = fixture.debugElement.queryAll(By.directive(PostComponent))
+            postComponentDEs[0].query(By.css('button')).triggerEventHandler('click', {
+                stopPropagation : () => {}
+            })
+
+            expect(component.deletePost).toHaveBeenCalledWith(posts[0]);
+            // expect(component.deletePost).toHaveBeenCalledTimes(1);
+            console.log(postComponentDEs)
+        })
+    })
     describe('template', () => {
         it('should create one post element for a each post', () => {
             mockPostService.getPost.and.returnValue(of(posts));
@@ -139,4 +155,5 @@ describe('Posts component', () => {
             }
         })
     })
+    
 })
