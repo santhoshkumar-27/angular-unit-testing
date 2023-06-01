@@ -124,6 +124,14 @@ describe('Posts component', () => {
             // expect(component.deletePost).toHaveBeenCalledTimes(1);
             console.log(postComponentDEs)
         })
+        it ('should call the orders when the delete value is emiitted i the post cmpoonet', () => {
+            mockPostService.getPost.and.returnValue(of(posts));
+            spyOn(component, 'deletePost')
+            fixture.detectChanges();
+            let postComponentDEs = fixture.debugElement.queryAll(By.directive(PostComponent));
+            (postComponentDEs[0].componentInstance as PostComponent).onDelete.emit(undefined);
+            expect(component.deletePost).toHaveBeenCalledWith(posts[1]);
+        })
     })
     describe('template', () => {
         it('should create one post element for a each post', () => {
