@@ -111,8 +111,8 @@ describe('Posts component', () => {
     })
     xdescribe('check the deletePost', () => {
         it('should call delete method when post component button  is clicked', () => {
-            spyOn(component, 'deletePost')
             mockPostService.getPost.and.returnValue(of(posts));
+            spyOn(component, 'deletePost')
             // call ngoninit methods
             fixture.detectChanges();
             const postComponentDEs = fixture.debugElement.queryAll(By.directive(PostComponent))
