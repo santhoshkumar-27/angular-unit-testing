@@ -1,0 +1,15 @@
+<div *ngIf="post">
+    <div id="title">title: {{post.title}}</div>
+    <div id="body">body: {{post.body}}</div>
+
+    <label for="title">
+        Title
+        <input type="text" name="title" id="title" [(ngModel)]="post.title">
+    </label>
+    <label for="body">
+        Body
+        <input type="text" name="body" id="body" [(ngModel)]="post.body">
+    </label>
+    <button type="button" (click)="goBack()">Go back</button>
+    <button type="submit" (click)="save()">save</button>
+</div>
